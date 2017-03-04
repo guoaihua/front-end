@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>队列操作</title>
+    <style>
+        * {
+          margin: 0;
+            padding: 0;
+
+        }
+        li {
+            width: 50px;
+            height: 50px;
+            display: inline-block;
+            background: #00b6f8;
+            color: white;
+            text-align: center;
+            line-height: 50px;
+        }
+        ul {
+            list-style: none;
+
+        }
+        .container {
+            margin: 200px 200px;
+        }
+
+    </style>
+</head>
+<body>
+
+       <div class="container">
+            <input type="text" id="text">
+
+            <div class="content" id="btns">
+        <button id="btn1">左侧入</button>
+        <button id="btn2">右侧入</button>
+        <button id="btn3">左侧出</button>
+        <button id="btn4">右侧出</button>
+    </div>
+
+        <ul id="wrap">
+
+        </ul>
+       </div>
+
+
+       <script>
+        // 获取元素
+        var text=document.getElementById("text");
+        var wrap=document.getElementById("wrap");
+        var btn1=document.getElementById("btn1");
+        var btn2=document.getElementById("btn2");
+        var btn3=document.getElementById("btn3");
+        var btn4=document.getElementById("btn4");
+
+
+
+        //  对输入框的数字进行验证  
+            function checkNumber(theObj) {
+                var reg = /^[0-9]+.?[0-9]*$/;
+                if (reg.test(theObj)) {
+                    return true;
+                }
+                return false;
+            }
+
+
+
+        btn1.onclick = function () {
+            if (checkNumber(text.value)==true){
+                var li = document.createElement("li");
+                li.innerHTML = text.value;
+                wrap.insertBefore(li, wrap.firstElementChild);
+                text.value="";
+            }else {
+                alert("请输入数字：");
+            }
+
+        }
+
+        btn2.onclick = function () {
+            if (checkNumber(text.value)==true){
+                var li = document.createElement("li");
+                li.innerHTML = text.value;
+                wrap.appendChild(li);
+                text.value="";
+            }else {
+                alert("请输入数字：");
+            }
+
+        }
+
+
+
+        btn3.onclick=function(){
+            alert(wrap.firstElementChild.innerHTML);
+            wrap.removeChild(wrap.firstElementChild);
+
+        }
+
+        btn4.onclick=function(){
+            alert(wrap.lastElementChild.innerHTML);
+            wrap.removeChild(wrap.lastElementChild);
+        }
+
+            //  利用事件委托 为每个li加上一个点击事件
+         wrap.onclick = function( ev ) {
+               ev = ev || window.event;
+             var t = ev.target || ev.srcElement;  //t:目标对象 也就是li元素
+             var tagName = t.nodeName.toLowerCase();　//tagName 是li标签的名称
+                if( tagName == 'li' ) {
+                       /* alert(t.innerText);*/
+                        wrap.removeChild(t);
+                      }
+               }
+
+
+    </script>
+</body>
+</html>
