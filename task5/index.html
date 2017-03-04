@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>队列操作</title>
+    <style>
+        * {
+          margin: 0;
+            padding: 0;
+
+        }
+        li {
+            width: 20px;
+            height: 0px;
+            display: inline-block;
+            background: #00b6f8;
+            text-align: center;
+            line-height: 50px;
+            margin: 2px;
+        }
+        ul {
+            list-style: none;
+
+        }
+        .container {
+            margin: 200px 200px;
+        }
+
+    </style>
+</head>
+<body>
+
+       <div class="container">
+            <input type="text" id="text">
+           <button id="paixu">排序</button>
+           <div class="content" id="btns">
+        <button id="btn1">左侧入</button>
+        <button id="btn2">右侧入</button>
+        <button id="btn3">左侧出</button>
+        <button id="btn4">右侧出</button>
+    </div>
+
+        <ul id="wrap">
+
+        </ul>
+       </div>
+
+
+       <script>
+
+        function fun1 (){
+            // 获取元素
+            var text=document.getElementById("text");
+            var wrap=document.getElementById("wrap");
+            var btn1=document.getElementById("btn1");
+            var btn2=document.getElementById("btn2");
+            var btn3=document.getElementById("btn3");
+            var btn4=document.getElementById("btn4");
+            var paixu=document.getElementById("paixu");
+            var lis=document.getElementsByTagName("li");
+            var arr=new Array();
+
+            if(lis.length<=60){
+
+
+
+            // 冒泡排序函数
+            paixu.onclick=function(){
+             console.log(arr);
+                for (var a=0;a<arr.length;a++){
+                    for (var b=0;b<arr.length-1-a;b++){
+                        if(arr[b]>arr[b+1]){
+                                var temp;
+                                temp =arr[b+1];
+                                arr[b+1]=arr[b];
+                                arr[b]=temp;
+                        }
+                    }
+                }
+          /*      console.log(arr);*/
+
+                for (var i=0;i<lis.length;i++){
+                    lis[i].style.height=arr[i]+"px";     // 循环遍历lis中的每一个li元素，将排序好的arr数组赋值给每一个li的height
+                }
+            }
+
+
+
+            //  对输入框的数字进行验证
+            function checkNumber(theObj) {
+                var reg = /^\d{2}$|100/gi;  // 正则匹配10-100的数字
+                if (reg.test(theObj)) {
+                    return true;
+                }
+                return false;
+            }
+
+
+            btn1.onclick = function () {
+                if (checkNumber(text.value)==true){
+                    var li = document.createElement("li");
+                    li.style.height=text.value+"px";
+                    wrap.insertBefore(li, wrap.firstElementChild);
+                    arr.unshift(text.value);
+                    text.value="";
+
+                }else {
+                    alert("请输入10-100数字：");
+                }
+
+            }
+
+            btn2.onclick = function () {
+                if (checkNumber(text.value)==true){
+                    var li = document.createElement("li");
+                    li.style.height=text.value+"px";
+                    wrap.appendChild(li);
+                    arr.push(text.value);
+                    text.value="";
+                }else {
+                    alert("请输入0-100数字：");
+                }
+
+            }
+
+
+
+            btn3.onclick=function(){
+                var num=parseInt(wrap.lastElementChild.style.height); // 高度转换为数字
+                alert(num);
+                wrap.removeChild(wrap.firstElementChild);
+                arr.shift();
+            }
+
+            btn4.onclick=function(){
+                var num=parseInt(wrap.lastElementChild.style.height);
+                alert(num);
+                wrap.removeChild(wrap.lastElementChild);
+                arr.pop();
+            }
+
+            //  利用事件委托 为每个li加上一个点击事件
+            wrap.onclick = function( ev ) {
+                ev = ev || window.event;
+                var t = ev.target || ev.srcElement;  //t:目标对象 也就是li元素
+                var tagName = t.nodeName.toLowerCase();　//tagName 是li标签的名称
+                if( tagName == 'li' ) {
+                  /*  alert(t.innerText);*/
+                    wrap.removeChild(t);
+                }
+            }
+
+
+            }else {
+                alert("队列超出限制，请小于等于60");
+            }
+
+
+        }
+
+        fun1();
+
+
+
+
+    </script>
+</body>
+</html>
