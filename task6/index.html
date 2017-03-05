@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>队列操作</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+
+        }
+        li {
+            width: 50px;
+            height: 50px;
+            display: inline-block;
+            background: #00b6f8;
+            color: white;
+            text-align: center;
+            line-height: 50px;
+        }
+        ul {
+            list-style: none;
+
+        }
+        .container {
+            margin: 200px 200px;
+        }
+
+        a {color: red;
+            text-decoration: none;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <textarea name="" id="text" cols="15" rows="10"></textarea>
+    <input type="text" id="sc">
+    <button id="btn5">搜索</button>
+    <div class="content" id="btns">
+        <button id="btn1">左侧入</button>
+        <button id="btn2">右侧入</button>
+        <button id="btn3">左侧出</button>
+        <button id="btn4">右侧出</button>
+    </div>
+
+    <ul id="wrap">
+
+    </ul>
+</div>
+
+
+<script>
+    // 获取元素
+    var text=document.getElementById("text");
+    var sc=document.getElementById("sc");
+    var wrap=document.getElementById("wrap");
+    var btn1=document.getElementById("btn1");
+    var btn2=document.getElementById("btn2");
+    var btn3=document.getElementById("btn3");
+    var btn4=document.getElementById("btn4");
+    var btn5=document.getElementById("btn5");
+
+    var arr=new Array();
+
+    //  对输入框的数字进行验证
+/*
+    function checkNumber(theObj) {
+        var reg = /^[0-9]+.?[0-9]*$/;
+        if (reg.test(theObj)) {
+            return true;
+        }
+        return false;
+    }
+*/
+
+    // 字符串分割函数
+
+    function fenge(){
+        var string=text.value.toString();
+        /*console.log(string);*/
+        var str=text.value.split(/[.|,|，|\\s+ ]|\n/);
+      /*  console.log(str.length);*/
+        return str;
+    }
+
+    // 搜索匹配
+    btn5.onclick=function(){
+        var lis=document.getElementsByTagName("li");
+        var ss=sc.value;
+        for(var i=0;i<arr.length;i++){
+                lis[i].innerHTML=arr[i].replace(new RegExp(ss,"g"),"<a>"+ss+"</a>");  //  匹配arr数组中的值 并替换为 对应的ss【i】+a标签
+        }
+
+    }
+
+
+
+
+    btn1.onclick = function () {
+            var str=fenge();
+            for (var i=0;i<str.length;i++) {
+                var li = document.createElement("li");
+                li.innerHTML = str[i];
+                wrap.insertBefore(li, wrap.firstElementChild);
+                arr.unshift(str[i]);
+                text.value = "";
+            }
+    }
+
+    btn2.onclick = function () {
+            var str=fenge();
+        for (var i=0;i<str.length;i++) {
+            var li = document.createElement("li");
+            li.innerHTML = str[i];
+            wrap.appendChild(li);
+            arr.push(str[i]);
+            text.value = "";
+        }
+    }
+
+
+
+    btn3.onclick=function(){
+        alert(wrap.firstElementChild.innerHTML);
+        wrap.removeChild(wrap.firstElementChild);
+    }
+
+    btn4.onclick=function(){
+        alert(wrap.lastElementChild.innerHTML);
+        wrap.removeChild(wrap.lastElementChild);
+    }
+
+    //  利用事件委托 为每个li加上一个点击事件
+    wrap.onclick = function( ev ) {
+        ev = ev || window.event;
+        var t = ev.target || ev.srcElement;  //t:目标对象 也就是li元素
+        var tagName = t.nodeName.toLowerCase();　//tagName 是li标签的名称
+        if( tagName == 'li' ) {
+            /* alert(t.innerText);*/
+            wrap.removeChild(t);
+        }
+    }
+
+
+</script>
+</body>
+</html>
