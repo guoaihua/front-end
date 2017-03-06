@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单验证</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        .container {
+            width: 1200px;
+            margin: 0 auto;
+        }
+        form {
+            width: 100%;
+            margin: 200px auto;
+            font-size: 20px;
+
+        }
+        form > input {
+            width: 400px;
+            height: 20px;
+            border-radius: 5px;
+        }
+        form > button {
+            width: 50px;
+            height: 30px;
+            background: orange;
+            color: white;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 5px;
+            margin-left: 10px;
+        }
+        form > span {
+            width: 400px;
+            height: 20px;
+            margin: 10px 40px 10px 46px;
+            display: block;
+            color: rgba(22, 193, 68, 0.98);
+        }
+
+    </style>
+</head>
+<body>
+        <div class="container">
+                <form action="javascript:void(0);">
+                    名称 <input type="text" id="textone"> <button class="btn1" id="btn1" > 验证</button>
+                    <span id="showone">必填选项，请输入一个4-16位字符</span>
+
+                </form>
+        </div>
+
+        <script>
+            var btn1=document.getElementById("btn1");
+
+            var textone=document.getElementById("textone");
+
+            var showone=document.getElementById("showone");
+
+
+            function fun(){
+
+                btn1.onclick=function(){
+                    yanzheng(textone,showone);
+                }
+
+                function yanzheng(obj1,obj2){
+                    var string=obj1.value.split("");
+                    /*   console.log(string[1]);*/
+                    var num1=0;
+                    var num2=0;
+                    for(var i=0;i<string.length;i++){
+
+                        if (check1(string[i])==true){
+                            num1++;
+                        }
+                        if (check2(string[i])==true){
+                            num2+=2;
+                        }
+                    }
+                    var nums=num1+num2;
+                    console.log(nums);
+
+                    if (nums==0){
+                        obj2.innerHTML="姓名不能为空";
+                    }
+                    else if (4<=nums&&nums<=16){
+                        obj2.innerHTML="名称格式正确";
+                    }else{
+                        obj2.innerHTML="请输入4-16个字符";
+                    }
+
+
+
+                    function check1(num){
+                        var a=/[^\u4e00-\u9fa5]/.test(num);
+                        /*  console.log(a);*/
+                        return a;
+                    }
+                    function check2(num){
+                        var b=/[\u4e00-\u9fa5]/.test(num);
+                        /*  console.log(a);*/
+                        return b;
+                    }
+                }
+
+
+
+
+
+
+            }
+
+            fun();
+
+
+
+        </script>
+</body>
+</html>
