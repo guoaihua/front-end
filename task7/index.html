@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>树的遍历</title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid black;
+            width: 850px;
+            height: 250px;
+        }
+        .box1 {
+            width: 400px;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid black;
+        }
+        .box2 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 180px;
+            height: 100px;
+            border: 1px solid black;
+        }
+        .box3 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 70px;
+            height: 70px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+   <div  class="container" id="container">
+         <div class="box1">
+             <div class="box2">
+                 <div class="box3"></div>
+                 <div class="box3"></div>
+             </div>
+             <div class="box2">
+                 <div class="box3"></div>
+                 <div class="box3"></div>
+             </div>
+         </div>
+
+
+       <div class="box1">
+           <div class="box2">
+               <div class="box3"></div>
+               <div class="box3"></div>
+           </div>
+           <div class="box2">
+               <div class="box3"></div>
+               <div class="box3"></div>
+           </div>
+       </div>
+   </div>
+
+   <button id="btn1">前序遍历</button>
+   <button id="btn2">中序遍历</button>
+   <button id="btn3">后序遍历</button>
+</body>
+
+        <script>
+            var btn1=document.getElementById("btn1");
+            var btn2=document.getElementById("btn2");
+            var btn3=document.getElementById("btn3");
+            var container = document.getElementById("container");
+            var arr=new Array();
+            var first,timer;
+
+            btn1.onclick=function (){
+                    clearTimeout(timer);
+                    arr=[];
+                    preOrder(container);
+                      xuanran();
+                console.log(arr);
+/*                console.log(container.children);
+                console.log(container.firstElementChild);*/
+            }
+
+            btn2.onclick=function (){
+                clearTimeout(timer);
+                arr=[];
+                inOrder(container);
+                xuanran();
+                console.log(arr);
+                /*                console.log(container.children);
+                 console.log(container.firstElementChild);*/
+            }
+
+            btn3.onclick=function (){
+                clearTimeout(timer);
+                arr=[];
+                postOrder(container);
+                xuanran();
+                console.log(arr);
+                /*                console.log(container.children);
+                 console.log(container.firstElementChild);*/
+            }
+
+
+            function preOrder(node){
+
+                if(node!=null){
+                    arr.push(node);
+                    preOrder(node.firstElementChild);
+                    preOrder(node.lastElementChild);
+                }
+            }
+
+            function inOrder(node){
+                if(!(node == null)){
+                    inOrder(node.firstElementChild);//先访问左子树
+                    arr.push(node);//再访问根节点
+                    inOrder(node.lastElementChild);//最后访问右子树
+                }
+            }
+          function postOrder(node) {
+              if (node!=null) {
+                  postOrder(node.firstElementChild);
+                  postOrder(node.lastElementChild);
+                  arr.push(node);
+              }
+          }
+
+            function xuanran(){
+                console.log(arr.length);
+                first = arr.shift();// 每次删除并提取数组中的第一个节点
+                if(first!=undefined){
+                    first.style.backgroundColor = "skyblue";
+                        timer = setTimeout(function(){
+                        first.style.backgroundColor = "#fff";
+                        xuanran();
+                    },1000);
+                    }
+            }
+
+
+
+        </script>
+</html>
