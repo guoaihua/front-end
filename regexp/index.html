@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>正则匹配</title>
+</head>
+<body>
+匹配手机号码 <input type="text" id="inputone">
+        <button id="btn1">验证</button>
+         <span id="showone"></span>   <br/><br/>
+
+匹配相同单词 <input type="text" id="inputtwo">
+        <button id="btn2">验证</button>
+<span id="showtwo"></span>
+
+</body>
+<script>
+    var inputone=document.getElementById("inputone");
+    var inputtwo=document.getElementById("inputtwo");
+    var btn1=document.getElementById("btn1");
+    var btn2=document.getElementById("btn2");
+    var showone=document.getElementById("showone");
+    var showtwo=document.getElementById("showtwo");
+
+    var re1=/^[1-9]\d{10}$/;
+    var re2=/\b(\w+)\s+\1\b/;
+
+    btn1.onclick=function(){
+        if(re1.test(inputone.value)==true){
+            showone.innerHTML="验证通过";
+        }else {
+            showone.innerHTML="验证失败";
+        }
+    }
+    btn2.onclick=function(){
+        if(re2.test(inputtwo.value)==true){
+            showtwo.innerHTML="验证通过";
+        }else {
+            showtwo.innerHTML="验证失败";
+        }
+    }
+
+</script>
+</html>
