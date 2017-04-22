@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小方块</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        .container{
+            margin: 0 auto;
+            width: 1000px;
+            position: relative;
+        }
+        table,td{
+            border: 1px solid red;
+        }
+
+        table{
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+        table{
+            width: 500px;
+        }
+        td {
+            height: 49px;
+        }
+        .move {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            top: 200px;
+            left: 0px;
+            background: red;
+        }
+        .blue {
+            width: 100%;
+            height: 20px;
+            background: blue;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <table id="table">
+    </table>
+    <div class="move" id="block">
+        <span class="blue"></span>
+    </div>
+    <input type="text" id="text">
+    <button id="btn">执行</button>
+</div>
+</body>
+<script>
+    var table=document.getElementById("table");
+    var trs=table.firstElementChild.children;
+    var block=document.getElementById("block");
+    var btn=document.getElementById("btn");
+
+    /*   console.log(trs[0].children[1]);*/
+    /*        二维数组储存表格
+     var boxs=new Array();
+     for(var k=0;k<10;k++){
+     boxs[k]=new Array();
+     }
+     for(var i=0;i<10;i++){
+     for (var j = 0;j<10;j++) {
+     boxs[i,j].push(trs[i].children[j]);
+     }
+     }*/
+
+
+
+
+    // 检测字符串
+    var text=document.getElementById("text");
+
+
+    // 储存当前小方块的位置
+
+    var p={
+        left:0,
+        top:200,
+        f:0,                // face 朝向 向上为1 向右为2 向下为3 向左为4
+        r:0,
+        n:0
+    }
+
+    btn.onclick=function(){
+
+        if(text.value=="GO"){
+            if (p.f==0){
+                if(p.top>=50){
+                    p.top-=50;
+                    block.style.top= p.top+"px";
+                    console.log(p);
+                }
+            }else if (p.f==1){
+                if (p.left<=400){
+                    p.left+=50;
+                    block.style.left= p.left+"px";
+                    console.log(p);
+                }
+            }else if(p.f==2){
+                if(p.top<=400){
+                    p.top+=50;
+                    block.style.top= p.top+"px";
+                    console.log(p);
+                }
+            }else {
+                if(p.left>=50){
+                    p.left-=50;
+                    block.style.left= p.left+"px";
+                    console.log(p);
+                }
+            }
+        }else if (text.value=="TUN LEF"){
+            p.r-=90;
+            block.style.transform="rotate("+ p.r+"deg)" ;
+            p.n--;
+            p.f=(4-Math.abs(p.n)%4)%4;
+            /*  console.log(p);*/
+        }else if (text.value=="TUN RIG"){
+            p.r+=90;
+            block.style.transform="rotate("+ p.r+"deg)" ;
+            p.n++;
+            p.f= p.n%4;
+            /*  console.log(p);*/
+        }else if (text.value=="TUN BAC"){
+            p.r+=180;
+            block.style.transform="rotate("+ p.r+"deg)" ;
+            p.n+=2;
+            p.f= p.n%4;
+            /*console.log(p);*/
+        }
+
+    }
+
+
+
+
+
+
+
+
+</script>
+</html>
