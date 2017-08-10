@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script >
+        var Book=function(name,author,price){
+            if (this instanceof Book){
+                this.name=name;
+                this.author=author;
+                this.price=price;
+            }else {
+            return new Book(name,author,price);
+            }
+        }
+
+        var book=Book("minguo","ziming",23);
+        console.log(book.name+"\n"+book.author+"\n"+book.price);
+    </script>
+</body>
+</html>
