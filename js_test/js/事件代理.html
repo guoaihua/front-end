@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>事件代理</title>
+</head>
+<body>
+	<button>点击2</button>
+	<button id="btn">点击</button>
+	<ul id="uls">
+		<li id="one">1</li>
+		<li id="two">2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+	</ul>
+	<script>
+
+		var uls=document.getElementById("uls");
+
+		var btn=document.getElementById("btn");
+/*		btn.onclick=function (event){
+				console.log(event.target);
+			}
+		btn.onclick=function (){
+				console.log(111);
+			}*/
+	
+		uls.addEventListener("click",handle,false);
+
+		function handle (evevnt) {
+				conso.log(event.target);
+				switch(event.target.id){
+						case "one":
+							alert("我是1");
+							break;
+						case "two":
+							alert("我是2");	
+				}
+		
+		}
+
+
+
+		document.body.addEventListener("click",function (evevnt) {
+			console.log("hahha");
+			console.log(evevnt.target);
+			console.log(evevnt.currentTarget);
+			console.log(this);
+		},false);
+
+
+			btn.addEventListener("click",function (evevnt) {
+			console.log("hahha1");
+			console.log(this);
+			event.stopPropagation();
+		},false);
+
+
+
+
+
+	</script>
+</body>
+</html>

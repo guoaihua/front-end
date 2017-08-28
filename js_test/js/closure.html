@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>闭包</title>
+	<style type="text/css">
+		ul li {
+			background-color: skyblue;
+			width: 200px;
+			height: 50px;
+		}
+	</style>
+</head>
+<body>
+
+	<ul class="text">
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+	</ul>
+
+	<script>
+	var lis=document.getElementsByTagName("li");
+	/*匿名函数自执行，传入循环变量i*/
+/*		for(var i=0;i<lis.length;i++){
+			(function (i) {
+				lis[i].onclick=function(){
+				alert(i);
+				} 
+			})(i);
+			
+		}
+*/
+
+	/*闭包,临时变量*/
+/*			for(var i=0;i<lis.length;i++){
+			(function () {
+				var temp=i;
+				lis[temp].onclick=function(){
+				alert(temp);
+				} 
+			})();
+			
+		}*/
+
+	/*es6新局部变量let*/
+		for( let i=0;i<lis.length;i++){
+				console.log(i);
+				lis[i].onclick=function(){
+					console.log(i);
+				} 
+		
+			
+		}
+
+
+	</script>
+
+</body>
+</html>
