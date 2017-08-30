@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<script>
+	var a=[1,322,1,3232,322,'a','dad','a','b'];
+/*	function removeDuplicatedItem(arr){
+		var re=[];
+		arr.forEach(function(item,index,array){
+			if(re.indexOf(item)===-1){
+				re.push(item);
+			}
+		});
+		return re;
+	}*/
+
+
+/*	function removeDuplicatedItem(ar) {
+    var ret = [];
+
+    ar.forEach(function(e, i, ar) {
+    	console.log(i);
+    	console.log(ar.indexOf(e));
+
+        if (ar.indexOf(e) === i) {
+            ret.push(e);
+        }
+    });
+
+    return ret;
+}*/
+
+
+
+/* function removeDuplicatedItem(arr){
+ 	arr.sort();
+
+ 	arr.forEach(function(item,index,array){
+ 			if(item==arr[index-1]){
+ 				arr.splice(index,1);
+ 			}
+ 	});	
+ 	return arr;
+ }*/
+
+
+ var newarr=Array.from(new Set(a));
+
+	console.log(newarr);
+
+	</script>
+</body>
+</html>
