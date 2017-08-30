@@ -59,13 +59,36 @@ console.log(Object instanceof Function);
 console.log(Function.prototype.__proto__==Object.prototype);*/
 
  function A(){
- 	this.name="nihao";
- }
+ 	
+ };
+ function B() {
+	
+};
+
+A.prototype.name='qeweq';
+
+
+B.prototype=new A();
+
+var b=new B();
+var a=new A();
+
+console.log(b.name);
 
 
 
- var a=new A();
- console.log(Array.__proto__==Function.prototype);
+
+
+var animal = function(){};
+var dog = function(){};
+
+ animal.price = 2000;
+ dog.prototype = animal;
+
+ var tidy = new dog();
+ console.log(dog.price) //undefined
+ console.log(tidy.price) // 2000*/
+
 
 
 </script>
