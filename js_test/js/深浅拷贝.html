@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>深浅拷贝</title>
+</head>
+<body>
+	<script>
+
+	// 浅拷贝
+	var a={
+		key1:'hua',
+		key2:['da','bb','cc'],
+		key3:{
+			num:121
+		}
+	}
+
+	function Copy(obj) {
+		var c={};
+		for(var i in obj){
+			c[i]=obj[i];
+		}
+		return c;
+	}
+
+	function Copys(obj,c){
+		var c=c||{};
+		for(var i in obj){
+			if(typeof obj[i]==='object'){
+				c[i]=(obj[i].constructor==Array)?[]:{};
+				Copys(obj[i],c[i]);
+			}else{
+				c[i]=obj[i];
+			}
+		}
+
+		return c;
+	}
+
+
+
+
+	var b=Copys(a);
+	console.log(b.key1);
+	console.log(b.key2);
+	console.log(b.key3);
+	b.key2.push("dadaa");
+	b.key3.num=2333;
+	console.log(b.key2);
+	console.log(b.key3);
+	console.log(a.key2);
+	console.log(a.key3);
+
+
+
+
+
+
+
+
+
+
+	</script>
+</body>
+</html>

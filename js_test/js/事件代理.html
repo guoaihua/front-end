@@ -8,54 +8,35 @@
 	<button>点击2</button>
 	<button id="btn">点击</button>
 	<ul id="uls">
-		<li id="one">1</li>
-		<li id="two">2</li>
-		<li>3</li>
-		<li>4</li>
-		<li>5</li>
+		<li>
+
+		<p>1231</p>
+		</li>
+		<li>
+			<p>1231</p>
+			</li>
+		<li><p>1231</p></li>
+		<li><p>1231</p></li>
+		<li><p>1231</p></li>
 	</ul>
 	<script>
 
-		var uls=document.getElementById("uls");
+	var uls=document.querySelector("#uls");
 
-		var btn=document.getElementById("btn");
-/*		btn.onclick=function (event){
-				console.log(event.target);
+	uls.addEventListener("click",handle,false);
+
+	function handle(e){
+
+		var target=e.target;
+		while(target!==uls){
+			if(target.nodeName.toLowerCase()=="li"){
+				console.log("点击了li");
+				break;
 			}
-		btn.onclick=function (){
-				console.log(111);
-			}*/
-	
-		uls.addEventListener("click",handle,false);
-
-		function handle (evevnt) {
-				conso.log(event.target);
-				switch(event.target.id){
-						case "one":
-							alert("我是1");
-							break;
-						case "two":
-							alert("我是2");	
-				}
-		
+			target=target.parentNode;
 		}
 
-
-
-		document.body.addEventListener("click",function (evevnt) {
-			console.log("hahha");
-			console.log(evevnt.target);
-			console.log(evevnt.currentTarget);
-			console.log(this);
-		},false);
-
-
-			btn.addEventListener("click",function (evevnt) {
-			console.log("hahha1");
-			console.log(this);
-			event.stopPropagation();
-		},false);
-
+	}
 
 
 
