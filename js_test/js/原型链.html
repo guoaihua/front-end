@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<script>
+	var person={
+		name:'hua',
+		age:22,
+		say:function(){
+			console.log(this.name);
+		}
+
+	}
+
+	Object.defineProperty(person,"name",{
+		writable:false,
+		value:"hhaa"
+	});
+
+
+	/*原型链的继承*/
+
+	function SubObj(){
+		SuperObj.call(this,"hua");
+		this.age=22;
+
+	}
+
+	function SuperObj(name){
+		this.name=name;
+	}
+
+
+	var obj = new SubObj();
+	console.log(obj.name+obj.age);
+/*	SubObj.prototype=new SuperObj();*/
+
+
+
+/*
+	SuperObj.prototype={
+		say:function () {
+			console.log("nihao");
+		}
+	}*/
+
+/*	var obj=new SuperObj();
+
+	console.log(obj.constructor);*/
+
+
+	/*obj1.say();*/
+	
+/*	var obj1=new SubObj();
+	var obj2=new SuperObj();
+	obj2.name="hah";
+	obj1.say();
+
+	console.log(SubObj.prototype.isPrototypeOf(obj1));
+	console.log(SuperObj.prototype.isPrototypeOf(obj1));
+	console.log(obj2.hasOwnProperty("name"));*/
+
+	</script>
+</body>
+</html>

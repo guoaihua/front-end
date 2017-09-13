@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>盒模型</title>
+	<style>
+		*{margin:0;padding: 0;}
+		.father-box {
+			width: 500px;
+			height: 300px;
+			border: 1px solid black;
+			font-size: 0px;
+		}
+		.child {
+			width: 100px;
+			height: 200px;
+			border:1px solid black;
+			margin:20px;
+			box-sizing: border-box;
+		}
+	</style>
+</head>
+<body>
+	<div class="father-box">
+		<div class="child"></div>
+		<div class="child"></div>
+		<div class="child"></div>
+		<div class="child"></div>
+	</div>
+</body>
+</html>
