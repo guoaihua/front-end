@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>跨域问题</title>
+</head>
+<body>
+	<script>
+		function handle(res){
+			console.log(res);
+		}
+
+		var script=document.createElement("script");
+		script.src="http://freegeoip.net/json/?callback=handle";
+		document.body.appendChild(script);
+
+	</script>
+</body>
+</html>
