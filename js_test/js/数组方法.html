@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style>
+		input:checked~label {
+			color: red;
+		}
+		div {
+			width: 100px;
+			height: 100px;
+			background-color: red;
+		}
+
+		div span {
+			width: 50px;
+			height: 50px;
+			background-color: green;
+		}
+
+	</style>
+</head>
+<body>
+	<input type="checkbox" id="checkbox">
+	<label for="checkbox">选我</label>
+	<input type="radio">
+	<select name="" id="">
+		<option value="">12</option>
+	</select>
+
+	<div onclick="aa()">
+		dada
+		<span onclick="bb(event)">adsads</span>
+	</div>
+
+	<script>
+
+
+function aa(){
+		alert("我是父元素");
+		
+	}
+function bb(e){
+		alert("我是子元素");
+		e.stopPropagation();
+}
+
+			var arr=[{"name":"aa","age":13},{"name":"aa","age":45},{"name":"aa","age":22},{"name":"bb","age":13},{"name":"cc","age":13}];
+
+			function Compare(a,b) {
+				if(a<b){
+					return 1;
+				}else if(a>b){
+					return -1;
+				}else {
+					return 0;
+				}
+			}
+
+			arrResult=arr.filter(function (item,index,arr) {
+				if(item.name=="aa"){
+					return item;
+				}
+			});
+
+			function Comparea(property) {
+			return function (a,b) {
+					return b[property]-a[property];
+				}
+			}
+
+			console.log(arrResult);
+
+			console.log(arrResult.sort(Comparea("age")));
+			/*console.log(arr.sort(Compare));*/
+	
+			function fac(num){
+				console.log(arguments.callee);
+				return num>1?num*arguments.callee(num-1):1;
+			}
+
+console.log(fac(3));
+
+		function getSuffix(flie) {
+		return	flie.slice(flie.indexOf(".")+1);
+		}
+
+		console.log(getSuffix("adad.txt"));
+	</script>
+
+
+
+</body>
+</html>
