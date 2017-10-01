@@ -14,7 +14,87 @@
 
 <body onunload="fun()">
 <script >
-   function reverseString(str) {
+
+function titleCase(str) {
+   var arr=str.toLowerCase().split(" ");
+   var arr1=[];
+
+   for(var i=0;i<arr.length;i++){
+   	 	arr1.push(arr[i][0].toUpperCase()+arr[i].substring(1));
+   }
+   return arr1.join(" ");
+
+}
+
+console.log(titleCase("I'm a little tea pot"));
+
+
+/*function rot13(str) {
+	console.log(str.length);
+	var str1='';
+	for(var i=0;i<str.length;i++){
+		if(str.charCodeAt(i)>65 && str.charCodeAt(i)<91){
+			if((str.charCodeAt(i)+13)>90){
+				str1+=String.fromCharCode((str.charCodeAt(i)+13)-26);
+			}else{
+				str1+=String.fromCharCode(str.charCodeAt(i)+13);
+			}
+			
+		}else {
+			str1+=str.slice(i,i+1);
+		}
+	}
+	console.log(str1);
+}
+
+rot13("SERR PBQR PNZC"); */
+
+/*	function destroyer(arr) {
+		console.log(arguments.length);
+		var arr_arg=arguments;
+		for(var i=1;i<arr_arg.length;i++){
+
+			console.log(arguments);
+				arr=arr.filter(function (item){
+					return arr_arg[i]!=item;
+				});
+		}
+	
+		console.log(arr);
+	}
+
+	destroyer([1,2,3,4,],2,3,4);*/
+
+/*function mutation(arr) {
+  var count=0;
+  arr[0].toLowerCase();
+  arr[1].toLowerCase();
+  console.log(arr[0].toLowerCase());
+  console.log(arr);
+  for(var i=0;i<arr[1].length;i++){
+    if(arr[0].toLowerCase().indexOf(arr[1].toLowerCase().slice(i,i+1))==-1){
+        return false;
+    }else{
+        count++;
+    }
+  }
+  if(count==arr[1].length){
+    return true;
+  }
+
+}
+
+console.log(mutation(["hello", "Hello"]));*/
+/*	function confirmEnding(str, target) {
+  // 请把你的代码写在这里
+  console.log(target.length);
+  console.log(str.substr(-target.length));
+  return str;
+}
+
+confirmEnding("Bastian", "n");*/
+
+/*   function reverseString(str) {
         // 请把你的代码写在这里
         var arr=str.split("");
         console.log(arr);
@@ -25,7 +105,7 @@
         return str;
     }
 
-    reverseString("hello");
+    reverseString("hello");*/
 
  /*   
     function factorialize(num) {
