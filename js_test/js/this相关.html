@@ -6,14 +6,16 @@
 </head>
 <body>
 	<script>
-	var box=function(){
-
+	var box={name:"aa"}
+	box.methods=function(){
+		console.log(this.aa);
 		function fn(){
 			console.log(this);
 		}
-		fn.call(this)
+		fn();
 	};
-	box();
+	box.methods();
+
 	</script>
 </body>
 </html>

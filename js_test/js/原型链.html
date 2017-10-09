@@ -24,18 +24,28 @@
 	/*原型链的继承*/
 
 	function SubObj(){
-		SuperObj.call(this,"hua");
 		this.age=22;
-
+		this.say=function(){
+		}
 	}
+
+	SubObj.aa="bb";
 
 	function SuperObj(name){
 		this.name=name;
 	}
 
+	SubObj.prototype = new SuperObj();
 
 	var obj = new SubObj();
-	console.log(obj.name+obj.age);
+
+	for(var i in obj){
+		if(obj.hasOwnProperty(i)){
+				console.log(i);
+		}
+
+	}
+/*	console.log(obj.name+obj.age);*/
 /*	SubObj.prototype=new SuperObj();*/
 
 
