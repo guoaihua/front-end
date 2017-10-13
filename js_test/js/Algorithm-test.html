@@ -5,6 +5,17 @@
 	<title>Document</title>
 </head>
 <body>
+	<button id="aa">点击禁用</button>
+	<script>
+	var btn=document.querySelector("#aa");
+	btn.addEventListener("click",handle,false);
+	function handle(e){
+		var target=e.target;
+
+		console.log(this==e.currentTarget);
+		this.disabled=true;
+	}
+	</script>
 	<!-- <script src="fcc-2-Algorithm.js"></script> -->
 	<!-- <script src="fcc-1-Algorithm.js"></script> -->
 	<!-- <script src="fcc-keys.js"></script> -->

@@ -20,8 +20,8 @@ Array.join()*/
 
 function myReplace(str, before, after) {
   var arr = str.split(" ");
-  if(before.charAt(0)>='A' && before.charAt(0)<='Z'){
-  		after = after.replace(after.charAt(0),after.charAt(0).toUpperCase());
+  if(before.charAt(0)>='A' && before.charAt(0)<='Z'){ // 判断一个字母大小写 大写字母位于 'A' 和 'Z' 之间 小写字母在 'a'和'z'之间
+  		after = after.replace(after.charAt(0),after.charAt(0).toUpperCase());   // 获取字符串的一个字符 charAt()
   		console.log(after);
   }
 
