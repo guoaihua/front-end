@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title>Document</title>
 	<style>
-		.block {
+		#id {
 			width: 200px;
 			height: 200px;
 			border: 1px solid black;
@@ -14,6 +14,13 @@
 	</style>
 </head>
 <body>
-	<div class="block" draggable="true"></div>
+	<div id="block" draggable="true"></div>
+	<script>
+	var block = document.querySelector("#block");
+		block.onmousedown = function(e){
+			var e= e||window.event;
+			
+		}
+	</script>
 </body>
 </html>
