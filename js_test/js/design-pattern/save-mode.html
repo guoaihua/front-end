@@ -6,18 +6,22 @@
 </head>
 <body>
     <script >
-        var Book=function(name,author,price){
-            if (this instanceof Book){
-                this.name=name;
-                this.author=author;
-                this.price=price;
-            }else {
-            return new Book(name,author,price);
-            }
-        }
+    // 安全模式，检测是否用new关键字创建对象
+    	
+    	var Person = function (name,age,interest){
+    		if(this instanceof Person){
+    				console.log(this);
+    			    this.name = name;
+		    		this.age = age;
+		    		this.interest = interest;
+    		}else{
+    			return new Person(name,age,interest);
+    		}
 
-        var book=Book("minguo","ziming",23);
-        console.log(book.name+"\n"+book.author+"\n"+book.price);
+    	}
+
+    	var person= Person("hua",22,"book");
+    	console.log(person);
     </script>
 </body>
 </html>
