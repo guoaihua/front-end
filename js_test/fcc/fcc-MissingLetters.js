@@ -37,4 +37,4 @@ function fearNotLetter(str) {
   return str!==""?str:undefined;
 }
 
-console.log(fearNotLetter("abceefghjl"));
+console.log(fearNotLetter("aeefghjl"));
