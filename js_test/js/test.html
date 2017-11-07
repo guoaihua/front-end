@@ -14,9 +14,23 @@
 
 <body onunload="fun()">
 <script >
+var b;
+function foo() {
+	console.log(window.a);
+    a = 1;
+
+}
 
 
-for(var i=0;i<4;i++){setTimeout(function(){console.log(i)}),0}
+
+
+foo();
+
+function bar() {
+    a = 1;
+}
+bar(); 
+/*for(var i=0;i<4;i++){setTimeout(function(){console.log(i)}),0}
 
 
   
@@ -33,7 +47,7 @@ function titleCase(str) {
 
 console.log(titleCase("I'm a little tea pot"));
 
-
+*/
 /*function rot13(str) {
 	console.log(str.length);
 	var str1='';
