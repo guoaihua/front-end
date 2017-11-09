@@ -7,7 +7,50 @@
 <body>
 	<script>
 
-	// 浅拷贝
+
+	 // 浅拷贝
+	 	
+	 function copy(obj){
+	 	var o = new Object();
+	 	for(var i in obj){
+	 		o[i] = i;
+	 		console.log(i);
+	 	}
+
+	 	return o;
+
+	 }
+
+	 var obj1 = {
+	 	 name: "hua",
+	 	 age: 22,
+	 	 interest: {
+	 	 	music: "well",
+	 	 	book: "aaa"
+	 	 }
+	 }
+
+	 console.log(copy(obj1));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	/*// 浅拷贝
 	var a={
 		key1:'hua',
 		key2:['da','bb','cc'],
@@ -51,7 +94,7 @@
 	console.log(b.key3);
 	console.log(a.key2);
 	console.log(a.key3);
-
+*/
 
 
 
