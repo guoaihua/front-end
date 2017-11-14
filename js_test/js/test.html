@@ -14,7 +14,17 @@
 
 <body onunload="fun()">
 <script >
-var b;
+
+
+       // 计算一个数的阶乘
+
+       function jiechen(num){
+           return (num<1)?1:num*arguments.callee(num-1); // 递归操作
+       }
+
+       console.log(jiechen(5));
+
+/*var b;
 function foo() {
 	console.log(window.a);
     a = 1;
@@ -29,7 +39,7 @@ foo();
 function bar() {
     a = 1;
 }
-bar(); 
+bar(); */
 /*for(var i=0;i<4;i++){setTimeout(function(){console.log(i)}),0}
 
 

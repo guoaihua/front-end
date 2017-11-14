@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <title>原生Ajax</title>
+</head>
+<body>
+  <script>
+
+
+  var ajax = {
+  	get:function(obj){
+  		var http = createHttp();
+  		// 检测参数完整度 并配置默认参数
+  		var callback = obj.callback || defaultCallback;
+
+  		if(obj.url === ""){
+  			alert("请输入正确的url");
+  			return ;
+  		}
+   		if(obj.data !== undefined){
+   			console.log("附加参数执行");
+		  	 obj.url = addURL(obj.url,obj.data);
+  		}
+
+
+
+  		http.onreadystatechange = function(){
+  			if(http.readyState == 4){
+  				if(http.status>=200 && http.status<300 || http.status ==304){
+  					callback(http.responseText);
+  				}else{
+  					alert("失败！");
+  				}
+  			}
+  		}
+
+  		http.open("GET",obj.url,true);
+  		if(obj.headers !== undefined){
+  			for(var key in obj.headers){
+  				http.setRequestHeader(key,obj.headers[key]);
+  			} 			
+  		}
+  		http.send(null);
+  	},
+  	post:function (obj) {
+  		var http = createHttp();
+
+  		var callback = obj.callback || defaultCallback;
+  		if(obj.data){
+  			obj.data = JSON.stringify(obj.data);
+  		}
+
+
+  		http.onreadystatechange = function(){
+  			if(http.readyState == 4){
+  				if(http.status>=200 && http.status<300 || http.status ==304){
+  					callback(http.responseText);
+  				}else{
+  					alert("失败！");
+  				}
+  			}
+  		}
+  		http.open("POST",obj.url,true);
+
+   		if(obj.headers !== undefined){
+  			for(var key in obj.headers){
+  				http.setRequestHeader(key,obj.headers[key]);
+  			} 			
+  		}
+
+  		http.setRequestHeader("Content-Type","application/json");
+  		console.log(obj.data);
+  		http.send(obj.data);
+  	},
+  	jsonp:function (obj) {
+  		// 防止多次请求，script标签的重复添加
+  		if(document.querySelector("#new")){
+  			document.querySelector("#new").parentNode.removeChild();
+  		}
+  		var script = document.createElement("script");
+
+  		var callback = obj.callback || defaultCallback;
+
+   		if(obj.data !== undefined){
+   			console.log("附加参数执行");
+		  	 obj.url = addURL(obj.url,obj.data);
+  		}
+
+  		script.src = obj.url;
+  		script.id = "new";
+  		document.body.append(script);
+  	}
+  }
+
+  function createHttp(){
+  	var ids = ['MSXML2.XMLHTTP.3.0','MSXML2.XMLHTTP','Microsoft.XMLHTTP'];
+  	if(window.XMLHttpRequest){
+  		 console.log("我是非ie浏览器");
+  		 return new XMLHttpRequest();
+  	}else {
+  		 console.log("我是ie7以下的ie版本");
+  		for (var i=0;i<ids.length;i++){
+  			try{
+  				var http = new ActiveXObject(ids[i]);
+  				break;
+  			}catch(e){}
+  		}
+  		return new ActiveXObject("Microsoft.XMLHTTP");
+  	}
+  }
+
+
+// jsonp 回调函数
+  function handle(data){
+  			console.log(data);
+  		}
+
+// URL参数添加函数
+function addURL(url,params) {
+				var param =[];
+		  		for(var key in params){
+		  			param.push(key+"="+encodeURIComponent(params[key]));
+		  		}
+		  		return url+"?"+param.join("&");
+}
+
+
+// 默认回调函数 
+function defaultCallback(data) {
+	console.log(data);
+}
+
+
+ajax.get({url:"http://localhost:3000/test"});
+ajax.post({url:"http://localhost:3000/test/a",data:{name:"da",age: 22},callback:function (data) {
+	console.log(data);
+}
+});
+// 天气查询api
+ajax.jsonp({url:"http://v.juhe.cn/weather/index",data:{cityname:"武汉",key:"5e0d90dc9842b427e2976e212ae2cca0"},callback:handle
+});
+  </script>
+</body>
+</html>
